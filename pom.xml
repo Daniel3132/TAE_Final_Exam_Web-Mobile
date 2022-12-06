@@ -17,28 +17,27 @@
             </plugin>
         </plugins>
     </build>
-    <packaging>jar</packaging>
 
     <name>Final_Exam_TAE_Daniel_Correa</name>
     <url>http://maven.apache.org</url>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>1.7</maven.compiler.source>
-        <maven.compiler.target>1.7</maven.compiler.target>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
         <testng.version>7.6.1</testng.version>
         <webdrivermanager.version>5.3.1</webdrivermanager.version>
         <selenium-java.version>4.6.0</selenium-java.version>
-        <slf4j.version>2.0.4</slf4j.version>
+        <slf4j.version>2.0.5</slf4j.version>
         <cucumber.version>7.8.1</cucumber.version>
     </properties>
 
     <dependencies>
-
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
             <version>${testng.version}</version>
+            <scope>test</scope>
         </dependency>
 
         <dependency>
@@ -71,5 +70,10 @@
             <version>${cucumber.version}</version>
         </dependency>
 
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-testng</artifactId>
+            <version>${cucumber.version}</version>
+        </dependency>
     </dependencies>
 </project>
