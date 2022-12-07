@@ -93,7 +93,7 @@ public class HomePage extends BasePage {
     @FindBy(id = "password-new")
     private WebElement passwordInputSignUp;
 
-    @FindBy (id = "BtnSubmit")
+    @FindBy(id = "BtnSubmit")
     private WebElement signUpBtnSubmit;
 
 
@@ -103,6 +103,7 @@ public class HomePage extends BasePage {
     }
 
     public void mouseOverUserIcon() {
+        super.waitForVisibility(IconUserToHover);
         super.mouseOver(this.IconUserToHover);
     }
 
@@ -112,9 +113,13 @@ public class HomePage extends BasePage {
     }
 
     public void closeBanner() {
-        if (bannerIframe.isDisplayed()) {
-            switchToBanner();
-            clickElement(closeBannerBtn);
+        try {
+            if (bannerIframe.isDisplayed()) {
+                switchToBanner();
+                clickElement(closeBannerBtn);
+            }
+        } catch (Exception e) {
+
         }
     }
 
@@ -224,13 +229,17 @@ public class HomePage extends BasePage {
         return signUpBtnSubmit.isDisplayed();
     }
 
+    public void clickSignUpBtnSubmit() {
+        super.waitForVisibility(signUpBtnSubmit);
+        super.clickElement(signUpBtnSubmit);
+    }
+
 
     //Watch Methods
     public WatchPage goToWatch() {
         super.clickElement(watchBtn);
         return new WatchPage(getDriver());
     }
-
 
 
     //Logout Methods

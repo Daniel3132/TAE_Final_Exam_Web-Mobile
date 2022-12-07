@@ -11,11 +11,10 @@ public class LogoutTest extends BaseTest {
 //        navigation.fastLogin();
         fastLogin();
         home.modalIsClosed();
-        home.mouseOverUserIcon();
-        home.clickLogoutBtn();
-        home.userOptionsListMenuIsClosed();
-        home.mouseOverUserIcon();
-        //checkThat("Welcome text is correct", home.welcomeTextValue(), is("Welcome!"));
+
+
+
+
     }
 }
 */

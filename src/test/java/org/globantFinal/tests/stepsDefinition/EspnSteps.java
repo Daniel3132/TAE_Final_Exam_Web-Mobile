@@ -5,24 +5,26 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.globantFinal.pageObjects.pages.HomePage;
+import org.globantFinal.pageObjects.pages.WatchPage;
 import org.testng.Assert;
 
 import static org.globantFinal.reporting.Reporter.info;
 
 public class EspnSteps {
-    protected HomePage home;
-    private String BROWSER = "CHROME";
-    private String EMAIL = "epale@gmail.com";
-    private String PASSWORD = "password";
-    private String FIRSTNAME = "UserName";
-    private String LASTNAME = "Testing";
-    private String MESSAGE_LOGGED = "UserName Welcome!";
+    private final HomePage home = new HomePage(WebHooks.getDriver());
+    private final WatchPage watch = new WatchPage(WebHooks.getDriver());
+    private final String EMAIL = "userfortest2@test.com";
+    private final String PASSWORD = "Secret_Password31";
+    private final String FIRSTNAME = "UserName";
+    private final String LASTNAME = "Testing";
+    private final String MESSAGE_LOGGED = "UserName Welcome!";
+    private final String MESSAGE_NO_LOGGED = "Welcome!";
 
 
+    ////////////////************** SingUp **************////////////////
     @Given("User navigate to the Website")
     public void userNavigateToTheWebsite() {
-        home = new HomePage(WebHooks.getDriver());
-        //home.closeBanner();
+        home.closeBanner();
         home.switchToHome();
     }
 
@@ -70,16 +72,76 @@ public class EspnSteps {
         home.fillEmailInputForSignUp(EMAIL);
         info("Filling Password input");
         home.fillPasswordInputForSignUp(PASSWORD);
+        info("Submitting form");
+        home.clickSignUpBtnSubmit();
         home.switchToHome();
+        home.modalIsClosed();
     }
 
     @Then("The page should display in logged state")
     public void thePageShouldDisplayInLoggedState() {
-        home.modalIsClosed();
         home.mouseOverUserIcon();
         home.isOpenUserOptionsList();
         Assert.assertEquals(home.welcomeTextValue(), MESSAGE_LOGGED, "Welcome text is correct");
 
     }
-}
 
+
+    ////////////////************** Watch **************////////////////
+    @Given("The user navigate to watch page")
+    public void theUserNavigateToWatchPage() {
+        info("Going to Watch page");
+        home.goToWatch();
+    }
+
+    @When("The user interacts with carousels")
+    public void theUserInteractsWithCarousels() {
+        info("All cards in the second carousel have a title");
+        Assert.assertTrue(watch.checkAllCardsTitle());
+        info("All cards in the second carousel have a description");
+        Assert.assertTrue(watch.checkAllCardsDescription());
+        info("Open card information");
+        watch.clickSecondCard();
+        info("Close button is visible");
+        Assert.assertTrue(watch.closeBtnModalIsDisplayed());
+        info("Close the modal");
+        watch.closeCardModal();
+    }
+
+    @Then("The user navigates back to home page")
+    public void theUserNavigatesBackToHomePage() {
+        info("Going back home page");
+        watch.backHome();
+    }
+
+
+    ////////////////************** Logout **************////////////////
+    @Given("The user is logged in")
+    public void theUserIsLoggedIn() {
+        home.openLoginModal();
+        home.switchToModal();
+        home.fillUsernameEmailInput(EMAIL);
+        home.fillPasswordInput(PASSWORD);
+        home.submitLoginForm();
+        home.switchToHome();
+    }
+
+    @When("The user opens the user options menu")
+    public void theUserOpensTheUserOptionsMenu() {
+        home.modalIsClosed();
+        home.mouseOverUserIcon();
+        home.isOpenUserOptionsList();
+    }
+
+    @And("The user clicks logout button")
+    public void theUserClicksLogoutButton() {
+        home.clickLogoutBtn();
+        home.userOptionsListMenuIsClosed();
+    }
+
+    @Then("The page should display in not logged state")
+    public void thePageShouldDisplayInNotLoggedState() {
+        home.mouseOverUserIcon();
+        Assert.assertEquals(home.welcomeTextValue(), MESSAGE_NO_LOGGED, "Welcome text is correct");
+    }
+}
