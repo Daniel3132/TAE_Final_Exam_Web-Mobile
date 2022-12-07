@@ -118,8 +118,7 @@ public class HomePage extends BasePage {
                 switchToBanner();
                 clickElement(closeBannerBtn);
             }
-        } catch (Exception e) {
-
+        } catch (Exception ignored) {
         }
     }
 
@@ -236,9 +235,9 @@ public class HomePage extends BasePage {
 
 
     //Watch Methods
-    public WatchPage goToWatch() {
+    public void goToWatch() {
         super.clickElement(watchBtn);
-        return new WatchPage(getDriver());
+        new WatchPage(getDriver());
     }
 
 
@@ -259,33 +258,4 @@ public class HomePage extends BasePage {
     public String welcomeTextValue() {
         return welcomeText.getText();
     }
-
-    //Deactivate User methods
-    public void clickESPNProfile() {
-        super.waitForVisibility(espnProfileLink);
-        super.clickElement(espnProfileLink);
-    }
-
-    public void clickDeleteAccount() {
-        super.waitForVisibility(deleteAccountLink);
-        super.waitForClickable(deleteAccountLink);
-        super.clickElement(deleteAccountLink);
-    }
-
-    public void clickDeleteAccountConfirmation() {
-        super.clickElement(loginBtnSubmit);
-    }
-
-    public void switchToUpdateAccountModal() {
-        super.getDriver().switchTo().frame(UpdateAccountModal);
-    }
-
-    public void waitForSpinner() {
-        super.waitForInvisibility(loadingSpinner);
-    }
-
-    public String failedLoginAttempt() {
-        return deleteAccountText.getText();
-    }
-
 }
