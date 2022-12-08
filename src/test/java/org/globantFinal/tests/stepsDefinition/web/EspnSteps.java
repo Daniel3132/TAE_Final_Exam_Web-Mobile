@@ -1,4 +1,4 @@
-package org.globantFinal.tests.stepsDefinition;
+package org.globantFinal.tests.stepsDefinition.web;
 
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
@@ -6,19 +6,15 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.globantFinal.pageObjects.pages.HomePage;
 import org.globantFinal.pageObjects.pages.WatchPage;
+import org.globantFinal.utils.web.SignUpConstants;
 import org.testng.Assert;
 
 import static org.globantFinal.reporting.Reporter.info;
 
-public class EspnSteps {
+public class EspnSteps implements SignUpConstants {
     private final HomePage home = new HomePage(WebHooks.getDriver());
     private final WatchPage watch = new WatchPage(WebHooks.getDriver());
-    private final String EMAIL = "userfortest2@test.com";
-    private final String PASSWORD = "Secret_Password31";
-    private final String FIRSTNAME = "UserName";
-    private final String LASTNAME = "Testing";
-    private final String MESSAGE_LOGGED = "UserName Welcome!";
-    private final String MESSAGE_NO_LOGGED = "Welcome!";
+
 
 
     ////////////////************** SingUp **************////////////////
@@ -80,9 +76,11 @@ public class EspnSteps {
 
     @Then("The page should display in logged state")
     public void thePageShouldDisplayInLoggedState() {
+        info("Open The user options menu by mouse hover");
         home.mouseOverUserIcon();
         home.isOpenUserOptionsList();
-        Assert.assertEquals(home.welcomeTextValue(), MESSAGE_LOGGED, "Welcome text is correct");
+        info("Check the welcome text have the username");
+        Assert.assertTrue(home.welcomeTextValue().contains(FIRSTNAME));
 
     }
 

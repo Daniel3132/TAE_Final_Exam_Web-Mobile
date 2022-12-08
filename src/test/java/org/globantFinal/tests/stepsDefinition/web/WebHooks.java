@@ -1,15 +1,15 @@
-package org.globantFinal.tests.stepsDefinition;
+package org.globantFinal.tests.stepsDefinition.web;
 
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import org.globantFinal.configuration.web.WebDriverManager;
+import org.globantFinal.utils.web.PageConstants;
 import org.openqa.selenium.WebDriver;
 
 
-public class WebHooks {
+public class WebHooks implements PageConstants {
 
     private static WebDriverManager driver;
-    private String URL = "https://www.espnqa.com/?src=com&_adblock=true&espn=cloud";
 
     public static WebDriver getDriver() {
         return driver.getDriver();

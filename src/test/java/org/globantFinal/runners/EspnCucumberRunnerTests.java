@@ -6,7 +6,7 @@ import io.cucumber.testng.CucumberOptions;
 @CucumberOptions(
         tags = "@web",
         features = {"src/test/java/org/globantFinal/tests/features/Espn.feature"},
-        glue = {"org/globantFinal/tests/stepsDefinition"},
+        glue = {"org/globantFinal/tests/stepsDefinition/web"},
         plugin = {
                 "pretty",
                 "html:target/site/cucumber-pretty",
