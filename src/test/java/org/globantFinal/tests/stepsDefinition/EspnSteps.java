@@ -10,7 +10,7 @@ import org.testng.Assert;
 
 import static org.globantFinal.reporting.Reporter.info;
 
-public class EspnSteps {
+public class EspnSteps{
     private final HomePage home = new HomePage(WebHooks.getDriver());
     private final WatchPage watch = new WatchPage(WebHooks.getDriver());
     private final String EMAIL = "userfortest2@test.com";

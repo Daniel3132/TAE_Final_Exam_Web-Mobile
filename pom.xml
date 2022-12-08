@@ -30,6 +30,7 @@
         <selenium-java.version>4.6.0</selenium-java.version>
         <slf4j.version>2.0.5</slf4j.version>
         <cucumber.version>7.8.1</cucumber.version>
+        <appium.version>7.2.0</appium.version>
     </properties>
 
     <dependencies>
@@ -74,6 +75,12 @@
             <groupId>io.cucumber</groupId>
             <artifactId>cucumber-testng</artifactId>
             <version>${cucumber.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.appium</groupId>
+            <artifactId>java-client</artifactId>
+            <version>${appium.version}</version>
         </dependency>
     </dependencies>
 </project>
