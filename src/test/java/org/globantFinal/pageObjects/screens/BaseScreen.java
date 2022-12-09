@@ -62,7 +62,7 @@ public abstract class BaseScreen {
      * @author Hans.Marquez
      */
     public void click(AndroidElement element, int timeout) {
-        WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(timeout) );
+        WebDriverWait wait = new WebDriverWait(driver,timeout) ;
         wait.until(ExpectedConditions.visibilityOf(element));
         element.click();
     }
@@ -75,7 +75,7 @@ public abstract class BaseScreen {
      * @author Hans.Marquez
      */
     public void click(AndroidElement element) {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
+        WebDriverWait wait = new WebDriverWait(driver, 15);
         wait.until(ExpectedConditions.visibilityOf(element));
         element.click();
     }
@@ -89,7 +89,7 @@ public abstract class BaseScreen {
      * @author Hans.Marquez
      */
     public void sendKeys(AndroidElement element, String sequence) {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
+        WebDriverWait wait = new WebDriverWait(driver, 15);
         wait.until(ExpectedConditions.visibilityOf(element));
         element.sendKeys(sequence);
     }
@@ -101,7 +101,7 @@ public abstract class BaseScreen {
      * @author Hans.Marquez
      */
     public boolean isElementAvailable(AndroidElement element) {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(3));
+        WebDriverWait wait = new WebDriverWait(driver, 3);
         try {
             wait.until(ExpectedConditions.visibilityOf(element));
             return true;
@@ -118,7 +118,7 @@ public abstract class BaseScreen {
      * @author Hans.Marquez
      */
     public boolean isElementAvailable(AndroidElement element, int timeout) {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeout) );
+        WebDriverWait wait = new WebDriverWait(driver, timeout );
         try {
             wait.until(ExpectedConditions.visibilityOf(element));
             return true;

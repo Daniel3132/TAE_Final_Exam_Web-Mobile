@@ -13,3 +13,15 @@ Feature: Disneyland android application basic functionality
     When The user opens the category list
     Then The app should display a list of options included Hotels one
 
+  @mobile
+  Scenario: See Privacy & Legal list successful
+    Given The user navigate to Menu screen
+    When User navigate to Privacy & Legal
+    Then The app should display a list of options included Privacy Policy one
+
+  @mobile
+  Scenario: Add Plans options
+    Given The user navigate to add plans
+    When The app shows the options list
+    Then The Reserve dining option is on the list
+
