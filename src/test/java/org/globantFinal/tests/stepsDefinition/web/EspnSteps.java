@@ -12,9 +12,9 @@ import org.testng.Assert;
 import static org.globantFinal.reporting.Reporter.info;
 
 public class EspnSteps implements SignUpConstants {
+
     private final HomePage home = new HomePage(WebHooks.getDriver());
     private final WatchPage watch = new WatchPage(WebHooks.getDriver());
-
 
 
     ////////////////************** SingUp **************////////////////
@@ -65,7 +65,7 @@ public class EspnSteps implements SignUpConstants {
         info("Filling Last name input");
         home.fillLastNameInput(LASTNAME);
         info("Filling Email input");
-        home.fillEmailInputForSignUp(EMAIL);
+        home.fillEmailInputForSignUp();
         info("Filling Password input");
         home.fillPasswordInputForSignUp(PASSWORD);
         info("Submitting form");
@@ -81,7 +81,6 @@ public class EspnSteps implements SignUpConstants {
         home.isOpenUserOptionsList();
         info("Check the welcome text have the username");
         Assert.assertTrue(home.welcomeTextValue().contains(FIRSTNAME));
-
     }
 
 

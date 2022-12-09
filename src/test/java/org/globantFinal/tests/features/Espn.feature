@@ -6,14 +6,14 @@ Feature: espn web page basic functionality
   Background:
     Given User navigate to the Website
 
-
+  @web
   Scenario: Sing up successful
     Given The user opens Login modal
     When The user navigate to Sign up form
     And The user fill the form with valid information
     Then The page should display in logged state
 
-
+  @web
   Scenario: Watch page working
     Given The user navigate to watch page
     When The user interacts with carousels

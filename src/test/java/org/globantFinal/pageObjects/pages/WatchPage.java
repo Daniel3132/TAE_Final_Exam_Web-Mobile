@@ -63,6 +63,6 @@ public class WatchPage extends BasePage {
     }
 
     public void backHome() {
-        super.getDriver().navigate().back();
+        super.getWebDriver().navigate().back();
     }
 }

@@ -109,7 +109,7 @@ public class HomePage extends BasePage {
 
     //Ad Banner
     public void switchToBanner() {
-        super.getDriver().switchTo().frame(bannerIframe);
+        super.getWebDriver().switchTo().frame(bannerIframe);
     }
 
     public void closeBanner() {
@@ -128,11 +128,11 @@ public class HomePage extends BasePage {
     }
 
     public void switchToModal() {
-        super.getDriver().switchTo().frame(loginIframe);
+        super.getWebDriver().switchTo().frame(loginIframe);
     }
 
     public void switchToHome() {
-        super.getDriver().switchTo().defaultContent();
+        super.getWebDriver().switchTo().defaultContent();
     }
 
     public boolean loginModalIsDisplayed() {
@@ -185,8 +185,15 @@ public class HomePage extends BasePage {
         super.typeOnInput(lastNameInput, lastName);
     }
 
-    public void fillEmailInputForSignUp(String email) {
-        super.typeOnInput(emailInputSignUp, email);
+    private String createRandomEmail() {
+        return Math.random() * 999 +
+                "Test_ESPN" +
+                Math.random() * 999 +
+                "@test.co";
+    }
+
+    public void fillEmailInputForSignUp() {
+        super.typeOnInput(emailInputSignUp, createRandomEmail());
     }
 
     public void fillPasswordInputForSignUp(String password) {
@@ -229,7 +236,7 @@ public class HomePage extends BasePage {
     }
 
     public void clickSignUpBtnSubmit() {
-        super.waitForVisibility(signUpBtnSubmit);
+        super.waitForClickable(signUpBtnSubmit);
         super.clickElement(signUpBtnSubmit);
     }
 
@@ -237,7 +244,7 @@ public class HomePage extends BasePage {
     //Watch Methods
     public void goToWatch() {
         super.clickElement(watchBtn);
-        new WatchPage(getDriver());
+        new WatchPage(getWebDriver());
     }
 
 
