@@ -22,6 +22,5 @@ Feature: Disneyland android application basic functionality
   @mobile
   Scenario: Add Plans options
     Given The user navigate to add plans
-    When The app shows the options list
     Then The Reserve dining option is on the list
 
