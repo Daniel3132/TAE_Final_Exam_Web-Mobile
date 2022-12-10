@@ -17,6 +17,17 @@ public class MobileHooks {
     public static AndroidDriver<AndroidElement> driver;
     protected static TutorialScreen tutorialScreen;
 
+    /**
+     * return SignUpOrLogInScreen after close the alerts.
+     *
+     * @return SignUpOrLogInScreen
+     * @author Arley.Bolivar
+     */
+    protected static DashBoardScreen loadDashBoardScreen() {
+        tutorialScreen.startPermissionsProcess();
+        return tutorialScreen.shareLocationPermissions();
+    }
+
     public void setUpStartApp() {
         tutorialScreen = new TutorialScreen(getDriver());
     }
@@ -34,7 +45,6 @@ public class MobileHooks {
         setUpStartApp();
     }
 
-
     @After
     public void mobileApplicationEnd() {
         driver.quit();
@@ -48,16 +58,5 @@ public class MobileHooks {
      */
     public AndroidDriver<AndroidElement> getDriver() {
         return driver;
-    }
-
-    /**
-     * return SignUpOrLogInScreen after close the alerts.
-     *
-     * @return SignUpOrLogInScreen
-     * @author Arley.Bolivar
-     */
-    protected static DashBoardScreen loadDashBoardScreen() {
-        tutorialScreen.startPermissionsProcess();
-        return tutorialScreen.shareLocationPermissions();
     }
 }

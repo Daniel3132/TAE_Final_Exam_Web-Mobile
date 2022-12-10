@@ -18,6 +18,7 @@ public class DisneylandSteps {
     private MenuScreen menu;
     private PrivacyAndLegalScreen privacy;
 
+
     ////////////////************** Category **************////////////////
     @Given("The user is on the dashboard screen")
     public void theUserIsOnTheDashboardScreen() {
