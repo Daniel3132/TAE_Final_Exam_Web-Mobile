@@ -21,7 +21,7 @@ public class WebOperations {
      */
     public WebOperations(WebDriver driver) {
         this.driver = driver;
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(10L));
+        this.wait = new WebDriverWait(driver, 10L);
         initElements(driver, this);
     }
 
@@ -30,7 +30,7 @@ public class WebOperations {
      *
      * @return driver of type WebDriver
      */
-    public WebDriver getDriver() {
+    public WebDriver getWebDriver() {
         return this.driver;
     }
 
@@ -90,7 +90,7 @@ public class WebOperations {
      */
     public void mouseOver(WebElement element) {
         this.waitForVisibility(element);
-        new Actions(getDriver()).moveToElement(element).perform();
+        new Actions(getWebDriver()).moveToElement(element).perform();
     }
 
     /**

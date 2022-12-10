@@ -93,7 +93,7 @@ public class HomePage extends BasePage {
     @FindBy(id = "password-new")
     private WebElement passwordInputSignUp;
 
-    @FindBy (id = "BtnSubmit")
+    @FindBy(id = "BtnSubmit")
     private WebElement signUpBtnSubmit;
 
 
@@ -102,19 +102,34 @@ public class HomePage extends BasePage {
         super(driver);
     }
 
+    /**
+     * Perform a mouse hover on the profile Icon
+     * It should open the menu options list
+     */
     public void mouseOverUserIcon() {
+        super.waitForVisibility(IconUserToHover);
         super.mouseOver(this.IconUserToHover);
     }
 
     //Ad Banner
+
+    /**
+     * Switch to banner to be able of close it
+     */
     public void switchToBanner() {
-        super.getDriver().switchTo().frame(bannerIframe);
+        super.getWebDriver().switchTo().frame(bannerIframe);
     }
 
+    /**
+     * If the ads banner its open it will be closed
+     */
     public void closeBanner() {
-        if (bannerIframe.isDisplayed()) {
-            switchToBanner();
-            clickElement(closeBannerBtn);
+        try {
+            if (bannerIframe.isDisplayed()) {
+                switchToBanner();
+                clickElement(closeBannerBtn);
+            }
+        } catch (Exception ignored) {
         }
     }
 
@@ -124,11 +139,11 @@ public class HomePage extends BasePage {
     }
 
     public void switchToModal() {
-        super.getDriver().switchTo().frame(loginIframe);
+        super.getWebDriver().switchTo().frame(loginIframe);
     }
 
     public void switchToHome() {
-        super.getDriver().switchTo().defaultContent();
+        super.getWebDriver().switchTo().defaultContent();
     }
 
     public boolean loginModalIsDisplayed() {
@@ -181,8 +196,22 @@ public class HomePage extends BasePage {
         super.typeOnInput(lastNameInput, lastName);
     }
 
-    public void fillEmailInputForSignUp(String email) {
-        super.typeOnInput(emailInputSignUp, email);
+    /**
+     * Create a random email to use it on sign up test
+     * @return a random email as a string
+     */
+    private String createRandomEmail() {
+        return Math.random() * 999 +
+                "Test_ESPN" +
+                Math.random() * 999 +
+                "@test.co";
+    }
+
+    /**
+     * automatically fills the email input with a random email
+     */
+    public void fillEmailInputForSignUp() {
+        super.typeOnInput(emailInputSignUp, createRandomEmail());
     }
 
     public void fillPasswordInputForSignUp(String password) {
@@ -224,13 +253,17 @@ public class HomePage extends BasePage {
         return signUpBtnSubmit.isDisplayed();
     }
 
-
-    //Watch Methods
-    public WatchPage goToWatch() {
-        super.clickElement(watchBtn);
-        return new WatchPage(getDriver());
+    public void clickSignUpBtnSubmit() {
+        super.waitForClickable(signUpBtnSubmit);
+        super.clickElement(signUpBtnSubmit);
     }
 
+
+    //Watch Methods
+    public void goToWatch() {
+        super.clickElement(watchBtn);
+        new WatchPage(getWebDriver());
+    }
 
 
     //Logout Methods
@@ -250,33 +283,4 @@ public class HomePage extends BasePage {
     public String welcomeTextValue() {
         return welcomeText.getText();
     }
-
-    //Deactivate User methods
-    public void clickESPNProfile() {
-        super.waitForVisibility(espnProfileLink);
-        super.clickElement(espnProfileLink);
-    }
-
-    public void clickDeleteAccount() {
-        super.waitForVisibility(deleteAccountLink);
-        super.waitForClickable(deleteAccountLink);
-        super.clickElement(deleteAccountLink);
-    }
-
-    public void clickDeleteAccountConfirmation() {
-        super.clickElement(loginBtnSubmit);
-    }
-
-    public void switchToUpdateAccountModal() {
-        super.getDriver().switchTo().frame(UpdateAccountModal);
-    }
-
-    public void waitForSpinner() {
-        super.waitForInvisibility(loadingSpinner);
-    }
-
-    public String failedLoginAttempt() {
-        return deleteAccountText.getText();
-    }
-
 }
