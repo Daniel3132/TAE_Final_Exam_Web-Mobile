@@ -3,6 +3,9 @@ package org.globantFinal.runners;
 import io.cucumber.testng.AbstractTestNGCucumberTests;
 import io.cucumber.testng.CucumberOptions;
 
+/**
+ * Select the features that will run and the steps definition file for mobile
+ */
 @CucumberOptions(
         tags = "@mobile",
         features = {"src/test/java/org/globantFinal/tests/features/Disneyland.feature"},

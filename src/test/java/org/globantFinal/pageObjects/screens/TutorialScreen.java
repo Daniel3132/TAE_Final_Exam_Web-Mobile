@@ -52,7 +52,10 @@ public class TutorialScreen extends BaseScreen {
     }
 
 
-
+    /**
+     *
+     * @return the dashboard screen set and ready
+     */
     public DashBoardScreen loadDashBoardScreen() {
         this.startPermissionsProcess();
         return this.shareLocationPermissions();

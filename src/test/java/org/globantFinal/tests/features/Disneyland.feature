@@ -3,7 +3,6 @@ Feature: Disneyland android application basic functionality
   The user should be able to tap on buttons.
   The user should see list of options and categories.
 
-
   Background:
     Given The user is on the dashboard screen
 

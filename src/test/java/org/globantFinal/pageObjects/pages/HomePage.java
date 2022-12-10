@@ -102,16 +102,27 @@ public class HomePage extends BasePage {
         super(driver);
     }
 
+    /**
+     * Perform a mouse hover on the profile Icon
+     * It should open the menu options list
+     */
     public void mouseOverUserIcon() {
         super.waitForVisibility(IconUserToHover);
         super.mouseOver(this.IconUserToHover);
     }
 
     //Ad Banner
+
+    /**
+     * Switch to banner to be able of close it
+     */
     public void switchToBanner() {
         super.getWebDriver().switchTo().frame(bannerIframe);
     }
 
+    /**
+     * If the ads banner its open it will be closed
+     */
     public void closeBanner() {
         try {
             if (bannerIframe.isDisplayed()) {
@@ -185,6 +196,10 @@ public class HomePage extends BasePage {
         super.typeOnInput(lastNameInput, lastName);
     }
 
+    /**
+     * Create a random email to use it on sign up test
+     * @return a random email as a string
+     */
     private String createRandomEmail() {
         return Math.random() * 999 +
                 "Test_ESPN" +
@@ -192,6 +207,9 @@ public class HomePage extends BasePage {
                 "@test.co";
     }
 
+    /**
+     * automatically fills the email input with a random email
+     */
     public void fillEmailInputForSignUp() {
         super.typeOnInput(emailInputSignUp, createRandomEmail());
     }
